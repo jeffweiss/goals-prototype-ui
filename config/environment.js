@@ -12,12 +12,25 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    DS: {
+      host: 'http://localhost:4002',
+      namespace: 'api'
+    },
+    'ember-simple-auth': {
+      authenticationRoute: 'auth.login',
+      routeIfAlreadyAuthenticated: 'app.index',
+      routeAfterAuthentication: 'app.index'
+    },
+    flashMessageDefaults: {
+      timeout: 3000,
+      extendedTimeout: 375
     }
   };
+
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

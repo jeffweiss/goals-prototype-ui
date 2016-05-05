@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m8 offset-m2">
+      {{#x-card
+        buttonText='Logout'
+        onsubmit=(route-action 'logout')
+        title='Welcome to SIPS!'}}
+
+        {{#user-info as |u|}}
+          Thanks for logging in as <b>{{u.email}}</b>
+        {{/user-info}}
+      {{/x-card}}
+    </div>
+  </div>
+</div>
