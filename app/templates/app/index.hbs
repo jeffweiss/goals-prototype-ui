@@ -2,13 +2,36 @@
   <div class="row">
     <div class="col s12 m8 offset-m2">
       {{#x-card
-        buttonText='Logout'
-        onsubmit=(route-action 'logout')
-        title='Welcome to SIPS!'}}
+        title='Goals'}}
+        <ul class="collection">
+          {{#each model.goals as |goal|}}
+            <li class="collection-item avatar">
+              <i class="material-icons green circle">chat</i>
+              <span class="title">{{goal.name}}</span>
+              <p class="grey-text">Owner: {{goal.owner.email}}</p>
+              <span class="secondary-content">
+                {{!-- REMOVE ROOM BUTTON --}}
+                <i class="material-icons red-text"
+                  onclick={{route-action 'removeGoal' goal}}>
+                  remove_circle
+                </i>
+              </span>
+            </li>
+          {{else}}
+            <li class="collection-item">
+              No goals yet 📉
+            </li>
+          {{/each}}
+        </ul>
+      {{/x-card}}
+      {{#x-card
+        title='Create a new goal'
+        buttonText='Create'
+        onsubmit=(route-action 'createGoal')}}
+        <div class="row">
+          {{x-input value=model.newGoal.name label="Goal Name" classNames='col s12' errors=model.newGoal.errors}}
+        </div>
 
-        {{#user-info as |u|}}
-          Thanks for logging in as <b>{{u.email}}</b>
-        {{/user-info}}
       {{/x-card}}
     </div>
   </div>
